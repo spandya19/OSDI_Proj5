@@ -1,0 +1,302 @@
+\documentclass{beamer}
+
+\mode<presentation>
+{
+  \usetheme{Dresden}
+  \setbeamercovered{transparent}
+}
+
+\usepackage[english]{babel}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\title [Amiga OS] % short title
+{Amiga Operating System}
+
+\author[Sweta] % (short authors list)
+{Sweta Pandya}
+
+\institute[Loyola University Chicago] % (optional, but mostly needed)
+{
+  % \inst{1}%
+    Department of Computer Science \\
+  Loyola University Chicago \\
+}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{center}
+    \includegraphics[height=3cm]{diagrams/Amiga_Logo}
+  \end{center}
+  \titlepage
+\end{frame}
+
+% SLIDE
+
+\begin{frame}{Outline}
+  \begin {itemize}
+	\item History
+	\item Components
+	\item Technical Overview
+	\item Semaphore
+	\item Scheduling
+	\item Deadlock
+	\item Future
+	\item References
+ \end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{History}
+  \begin{itemize}
+    \item Amiga OS was developed first by Commodore International, and initially introduced in 1985 with the Amiga 		1000.
+     \item Amiga DOS and Workbench.
+     \item In 2001 they contracted Amiga OS 4 development to Hyperion Entertainment and in 2009 they granted
+	Hyperion an exclusive, worldwide right to Amiga OS 3.1 in order to develop and market Amiga OS 4 and 
+	subsequent versions.
+    \end{itemize}
+ \end{frame}
+
+
+% SLIDE
+\begin{frame}{Components}
+  \begin{itemize}
+    \item Kickstart
+      \item Amiga DOS
+      \item Workbench
+    \end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{Kickstart}
+  \begin{itemize}
+  	\item Bootstrap firmware.
+      	\item Its purpose is to initialize the Amiga hardware and core components of Amiga OS and then attempt to boot from a bootable volume, such as a      
+       floppy disk or hard disk drive.
+      \item The first production Amiga, the Amiga 1000, required Kickstart to be loaded first from floppy disk into RAM reserved for this purpose.
+       Later models generally hold Kickstart on an embedded ROM chip, improving start-up times.
+    \end{itemize}
+\end{frame}
+ 
+
+% SLIDE
+\begin{frame}{Amiga DOS}
+  \begin{itemize}
+      	\item In Amiga OS 1.x, Amiga DOS was written in BCPL. From Amiga OS 2.x onwards, Amiga DOS was rewritten in C.
+
+      \item The console had various features,  such as command history, pipelines, and automatic creation of files when output was redirected.
+\item Feature of "script" programming.
+\item The first file system was simply called Amiga FileSystem. It was soon replaced by FastFileSystem (FFS).
+\end{itemize}
+\end{frame}
+
+
+
+% SLIDE
+\begin{frame}{Workbench}
+  \begin{itemize}
+  	\item Graphical Interface for Amiga DOS.
+\begin{itemize}
+      	\item Tools
+	\item Tool types
+	\item Drawers
+	\item Projects
+\end{itemize}
+\item Workbench 1.x
+\item Workbench 2.x
+\item Workbench 3.x
+\item Workbench 4.x
+\end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{Workbench 1.x}
+ 
+  \begin{center}
+    \includegraphics[height=4cm]{diagrams/Amiga_Workbench_1_0}
+  \end{center}
+ 
+\begin{itemize}
+  	\item Amiga1000
+	\item Maximum resolution 640 x 512 
+	
+\end{itemize}
+\end{frame}
+
+% SLIDE
+\begin{frame}{Workbench 2.x}
+ 
+  \begin{center}
+    \includegraphics[height=4cm]{diagrams/Amiga_Workbench_2_0}
+  \end{center}
+ 
+\begin{itemize}
+  	\item No unified look and feel design 
+	\item Amiga Guide
+	
+\end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{Workbench 3.x}
+ 
+  \begin{center}
+    \includegraphics[height=3cm]{diagrams/Amiga_Workbench_3_9}
+  \end{center}
+ 
+\begin{itemize}
+
+  	\item Changed the complete look and feel of its interface 
+	\item Support for New Icons and various other third party GUI enhancements to improve elder Amiga interfaces 
+\item Introduction of the AmiDOCK, a program start bar
+\item Amiga 1200 and Amiga 4000 
+
+\end{itemize}
+\end{frame}
+
+% SLIDE
+\begin{frame}{Workbench 4.x}
+ 
+  \begin{center}
+    \includegraphics[height=4cm]{diagrams/Amiga_Workbench_4_0}
+  \end{center}
+ 
+\begin{itemize}
+  	\item Fully PowerPC compatible
+	\item Drag and drop of Workbench icons
+	\item TrueType fonts and movie player named "Action" with DivX and MPEG-4 support
+\end{itemize}
+\end{frame}
+
+% SLIDE
+\begin{frame}{Technical Overview}
+  \begin{itemize}
+  	\item Work with Motorola Processors
+	\begin{itemize}
+	\item A1000 - 68EC020
+	\item A4000/030 - 68EC030
+\end{itemize}
+
+\item Process States 
+
+\begin{itemize}
+  	\item Two queues 
+	
+\end{itemize}
+\item Memory Management
+
+\begin{itemize}
+  	\item No memory protection
+	\item Problem of memory corruption
+	
+\end{itemize}
+\item Exec Microkernel
+
+\begin{itemize}
+  	\item Uses much less memory than other operating systems that offer the same features.
+
+	\item Deals with the resource handling
+\end{itemize}
+
+\end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{Semaphores}
+  \begin{itemize}
+  	\item Forbid() and Disable() function to turn off interrupts
+	\item Exec semaphore functions:
+\begin{itemize}
+\item AddSemaphore()
+\item AttemptSemaphore()
+\item FindSemaphore()
+\item InitSemaphore()
+\item ObtainSemaphore()
+\item ObtainSemaphoreList(),
+\item ObtainSemaphoreShared()
+\item ReleaseSemaphore()
+\item ReleaseSemaphoreList()
+\item RemSemaphore()
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+
+% SLIDE
+\begin{frame}{Scheduling}
+  \begin{itemize}
+  	\item Pre-emptive Multitasking
+\item Special feature of allowing the user to have some control over process scheduling
+\begin{itemize}
+\item Control Panel
+\item ChangeTaskPriority Command
+\item Executive Tool
+
+\end{itemize}
+\item Advantages
+\begin{itemize}
+\item Runs number of programs in the background at a lower priority than other applications
+\item Object oriented programming can be implemented
+\end{itemize}
+\item Disadvantages
+\begin{itemize}
+\item Single program can hog the processor and lock out other programs
+\item Ability for one program to
+overwrite or corrupt another
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+% SLIDE
+\begin{frame}{Deadlock}
+  \begin{itemize}
+  	\item Ignore the deadlock problem
+\item Few provisions made for deadlock avoidance and the find-and-repair technique
+\end{itemize}
+\end{frame}
+
+% SLIDE
+\begin{frame}{Future??}
+  \begin{itemize}
+  	\item After the release of Amiga’s newest OS, 4.0, Amiga will continue to develop and
+improve upon the initial version. The future of Amiga’s commitment hinges on the
+success of these developing OS’s. If they are a success then we will mostly likely see
+development of an OS 4.5 and OS 5.
+
+\end{itemize}
+\end{frame}
+
+
+
+% SLIDE
+\begin{frame}{References}
+  \begin{itemize}
+  	\item https://users.cs.jmu.edu/abzugcx/public/Student-Produced-Term-Projects/Operating-Systems-2003-FALL/Amiga-by-Kevin-Marinak-Jon-Bradley-Holly-Medeiros-John-Feehan-Nimish-Patel.pdf
+\item http://en.wikipedia.org/wiki/AmigaOS
+\item http://www.amigahistory.co.uk/caos.html
+\item http://www.amigaforever.com/
+\end{itemize}
+\end{frame}
+
+
+% SLIDE
+\begin{frame}{}
+ 
+  \begin{center}
+    \includegraphics[height=4cm]{diagrams/Thank_You.jpg}
+  \end{center}
+\end{frame}
+
+\end{document}
